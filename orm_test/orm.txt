@@ -1,0 +1,38 @@
+Python  ORM
+
+
+python直接操作Mysql
+python3中第三方模块pymysql，提供python对mysql的操作
+
+创建链接
+conn = pymysql.connect(host='127.0.0.1', port=3306, user='fuzj', passwd='123123', db='fuzj')
+
+创建游标
+默认返回元组
+cursor = conn.cursor()
+设置返回字典
+cursor = conn.cursor(cursor=pymysql.cursors.DictCursor)
+
+
+直接执行sql语句
+effect_row = cursor.execute("insert into user (name) values (%s) ", ('323'))
+effect_row = cursor.executemany("insert into user (name) values (%s) ", [('123',),('456',),('789',),('0',),('1',),('2',),('3',)])
+
+
+查询
+cursor.execute("select * from user")
+查询一行
+row_1 = cursor.fetchone()
+查询多行
+row_2 = cursor.fetchmany(n)
+查询全部数据
+row_3= cursor.fetchall()
+conn.commit()
+cursor.close()
+conn.close()
+
+
+
+
+
+
